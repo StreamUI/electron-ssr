@@ -43,7 +43,8 @@ function createWindow() {
     height: 600,
     title: 'Datastar in Electron',
     webPreferences: {
-      webSecurity: false, // Allow loading local resources
+      nodeIntegration: false,
+      contextIsolation: true,
     },
   });
 

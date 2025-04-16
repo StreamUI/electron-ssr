@@ -16,7 +16,8 @@ function createWindow() {
     height: 600,
     title: 'ElectronSSR Notes Example',
     webPreferences: {
-      webSecurity: false, // Allow loading local resources
+      nodeIntegration: false,
+      contextIsolation: true,
     },
   });
 

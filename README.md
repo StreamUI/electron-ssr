@@ -27,7 +27,8 @@ function createWindow() {
     width: 800,
     height: 600,
     webPreferences: {
-      webSecurity: false, // Allow loading local resources
+      nodeIntegration: false,
+      contextIsolation: true,
     },
   });
 

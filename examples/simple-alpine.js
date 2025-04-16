@@ -11,7 +11,8 @@ function createWindow() {
     height: 600,
     title: 'ElectronSSR Alpine Example',
     webPreferences: {
-      webSecurity: false, // Allow loading local resources
+      nodeIntegration: false,
+      contextIsolation: true,
     },
   });
 
