@@ -314,7 +314,7 @@ This approach completely eliminates the need to manually handle IPC communicatio
 
 ## How it works
 
-Electron SSR works by:
+Electron SSR works by
 
 1. Registering custom protocol handlers in Electron
 2. Creating a virtual "server" that runs in the main process
