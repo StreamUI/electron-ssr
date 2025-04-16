@@ -342,6 +342,7 @@ See the `examples` directory for complete examples:
 - `simple-alpine.js` - Basic example, but using only AlpineJS
 - `htmx-notes.js` - Example with realtime synced secure notes
 - `datastar.js` - Example using Datastar
+- `realtime.js` - Testing streaming HTML updates over SSE at 60+ FPS with Datastar
 
 
 ### Contributing

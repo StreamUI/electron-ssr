@@ -13,6 +13,14 @@
       "import": "./dist/index.es.js"
     }
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StreamUI/electron-ssr.git"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "build": "tsc && vite build",
     "dev": "tsc && vite build --watch",
