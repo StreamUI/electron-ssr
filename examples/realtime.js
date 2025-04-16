@@ -1,5 +1,5 @@
 import { app, BrowserWindow, protocol } from 'electron';
-import { createSSR } from '@electron/ssr';
+import { createSSR } from 'ssr-electron';
 import path from 'path';
 import { performance } from 'perf_hooks';
 

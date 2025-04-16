@@ -13,6 +13,7 @@ export default defineConfig({
     rollupOptions: {
       external: ['electron', 'stream'],
       output: {
+        exports: "named",
         globals: {
           electron: 'electron',
           stream: 'stream',

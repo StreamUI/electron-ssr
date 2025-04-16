@@ -9,7 +9,7 @@
 
 ```bash
 # Install dependencies
-npm install @electron/ssr
+npm install ssr-electron
 ```
 
 ### Simple Example
@@ -17,7 +17,7 @@ npm install @electron/ssr
 ```javascript
 // main.js
 import { app, BrowserWindow } from 'electron';
-import { createSSR } from '@electron/ssr';
+import { createSSR } from 'ssr-electron';
 
 // Create the SSR bridge instance
 const ssr = createSSR({ debug: true });

@@ -1,5 +1,5 @@
 import { app, BrowserWindow, protocol, safeStorage } from 'electron';
-import { createSSR } from '@electron/ssr';
+import { createSSR } from 'ssr-electron';
 import fs from 'fs/promises';
 import path from 'path';
 

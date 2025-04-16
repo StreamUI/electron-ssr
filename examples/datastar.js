@@ -1,5 +1,5 @@
 import { app, BrowserWindow, protocol } from 'electron';
-import { createSSR } from '@electron/ssr';
+import { createSSR } from 'ssr-electron';
 import { PassThrough, Readable } from 'stream';
 
 // Create the SSR bridge instance
