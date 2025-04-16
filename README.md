@@ -216,11 +216,11 @@ Here's an example with HTMX:
 
 ```javascript
 // In your main process setup
-import { ElectronSSR } from 'electron-ssr';
+import { createSSR } from 'ssr-electron';
 import fs from 'fs/promises';
 import { safeStorage } from 'electron';
 
-const ssr = new ElectronSSR();
+const ssr = createSSR({ debug: true });
 
 // Register a route that reads a file and returns its content
 ssr.registerRoute('/notes', async (request, url) => {
