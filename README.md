@@ -340,7 +340,7 @@ This approach completely eliminates the need to manually handle IPC communicatio
 
 Electron SSR works by
 
-1. Registering custom protocol handlers in Electron
+1. Register [HTTP routes and handle requests directly in Electron](https://www.electronjs.org/docs/latest/api/protocol)
 2. Creating a virtual "server" that runs in the main process
 3. Handling HTTP-like requests from the renderer
 4. Supporting Server-Sent Events (SSE) for real-time updates
@@ -348,14 +348,6 @@ Electron SSR works by
 
 Essentially, it turns your main process into a server that your renderer can communicate with using standard web protocols, **without actually running a server or opening any ports**.
 
-## Features
-
-- Register [HTTP routes and handle requests directly in Electron](https://www.electronjs.org/docs/latest/api/protocol)
-- Handle Server-Sent Events (SSE) for real-time updates
-- Broadcast updates to clients
-- Support for HTMX and Datastar-compatible events and responses
-- No traditional server needed
-- No direct IPC calls needed from your application code
 
 ## Examples
 
