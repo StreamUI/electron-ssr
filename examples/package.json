@@ -1,0 +1,20 @@
+{
+  "name": "electron-ssr-examples",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Examples for electron-ssr package",
+  "main": "simple-example.js",
+  "scripts": {
+    "start:simple": "electron simple-example.js",
+    "start:datastar": "electron datastar.js",
+    "start:notes": "electron htmx-notes.js",
+    "start:alpine": "electron simple-alpine.js",
+    "start:realtime": "electron realtime.js"
+  },
+  "dependencies": {
+    "@electron/ssr": "*"
+  },
+  "devDependencies": {
+    "electron": "^35.1.5"
+  }
+} 

@@ -1,0 +1,25 @@
+{
+  "name": "@electron/ssr-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Electron SSR w/ HTMX, Alpine.js, Datastar, and SSE",
+  "author": {
+    "name": "Jordan Howlett",
+    "email": "jordan@howlett.io"
+  },
+  "scripts": {
+    "build": "npm run build --workspace=packages/electron-ssr",
+    "clean": "npm run clean --workspace=packages/electron-ssr"
+  },
+  "workspaces": [
+    "packages/*",
+    "examples"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}

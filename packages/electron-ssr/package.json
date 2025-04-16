@@ -1,0 +1,53 @@
+{
+  "name": "@electron/ssr",
+  "version": "0.1.0",
+  "description": "Electron SSR w/ HTMX, Alpine.js, Datastar, and SSE",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.es.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc && vite build",
+    "dev": "tsc && vite build --watch",
+    "clean": "rimraf dist",
+    "prepublishOnly": "npm run clean && npm run build",
+    "release": "npm pack && npm publish"
+  },
+  "keywords": [
+    "electron",
+    "htmx",
+    "sse",
+    "server-sent-events",
+    "datastar",
+    "ssr",
+    "no-server"
+  ],
+  "author": {
+    "name": "Jordan Howlett",
+    "email": "jordan@howlett.io"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "electron": ">=18.0.0"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "devDependencies": {
+    "@types/node": "^22.14.1",
+    "electron": "^35.1.5",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.0",
+    "vite-plugin-dts": "^4.5.3"
+  }
+}
