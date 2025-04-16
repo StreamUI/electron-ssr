@@ -1,6 +1,6 @@
 {
   "name": "ssr-electron",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Electron SSR w/ HTMX, Alpine.js, Datastar, and SSE",
   "type": "module",
   "main": "dist/index.js",
