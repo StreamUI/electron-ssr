@@ -131,7 +131,7 @@ I wanted something simpler.
 
 ### A different approach: Server-Side Rendering in Electron
 
-I stumbled upon this article in my rabbit hole:  [The ultimate Electron app with Next.js and React Server Components](https://medium.com/@kirill_konshin/the-ultimate-electron-app-with-next-js-and-react-server-components-40742c055fb0). I ended up not going this direction as I deeply dislike NextJS, but later I stumbled upon Datastar and HTMX and remembered this article and I wondered if I could adapt the idea to work with HTMX / Datastar instead. Potentially I could get this working with just bare React 🤔
+I stumbled upon this article in my rabbit hole:  [The ultimate Electron app with Next.js and React Server Components](https://medium.com/@kirill.konshin/the-ultimate-electron-app-with-next-js-and-react-server-components-a5c0cabda72b). I ended up not going this direction as I deeply dislike NextJS, but later I stumbled upon Datastar and HTMX and remembered this article and I wondered if I could adapt the idea to work with HTMX / Datastar instead. Potentially I could get this working with just bare React 🤔
 
 The result is Electron SSR - a library that lets you use server-side rendering patterns directly in your Electron app without dealing with IPC.
 
