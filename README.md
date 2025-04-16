@@ -131,7 +131,7 @@ I wanted something simpler.
 
 ### A different approach: Server-Side Rendering in Electron
 
-I stumbled upon this article in my rabbit hole:  [The ultimate Electron app with Next.js and React Server Components](https://medium.com/@kirill.konshin/the-ultimate-electron-app-with-next-js-and-react-server-components-a5c0cabda72b). I ended up not going this direction as I deeply dislike NextJS, but later I stumbled upon Datastar and HTMX and remembered this article and I wondered if I could adapt the idea to work with HTMX / Datastar instead. Potentially I could get this working with just bare React 🤔
+I stumbled upon this article in my rabbit hole:  [The ultimate Electron app with Next.js and React Server Components](https://medium.com/@kirill.konshin/the-ultimate-electron-app-with-next-js-and-react-server-components-a5c0cabda72b). I ended up not going this direction as I deeply dislike NextJS, but later I stumbled upon Datastar and HTMX and remembered this article and I wondered if I could adapt the idea to work them instead. Potentially I could also get this working with just bare React 🤔
 
 The result is Electron SSR - a library that lets you use server-side rendering patterns directly in your Electron app without dealing with IPC.
 
@@ -153,7 +153,7 @@ With traditional Electron development, if you want to use Node.js modules in you
 
 This requires careful coordination between multiple files and introduces complexity:
 
-### 🙅‍♀️ Not fun way:
+### 😢 Not fun way:
 
 ```javascript
 // preload.js
@@ -161,13 +161,31 @@ const { contextBridge, ipcRenderer } = require('electron')
 
 contextBridge.exposeInMainWorld('electronAPI', {
   readNote: () => ipcRenderer.invoke('read-note'),
-  saveNote: (content) => ipcRenderer.invoke('save-note', content)
+  saveNote: (content) => ipcRenderer.invoke('save-note', content),
+  // Expose a function to listen for notifications from main
+  onNoteUpdated: (callback) => ipcRenderer.on('note-updated', (_event, value) => callback(value))
 })
 
 // main.js
 const { app, BrowserWindow, ipcMain, safeStorage } = require('electron')
 const fs = require('fs/promises')
 
+// Creating the window
+let mainWindow;
+
+function createWindow() {
+  mainWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js'),
+      contextIsolation: true
+    }
+  });
+  mainWindow.loadFile('index.html');
+}
+
+// IPC handlers
 ipcMain.handle('read-note', async () => {
   try {
     const encryptedContent = await fs.readFile('user-notes.enc')
@@ -181,6 +199,9 @@ ipcMain.handle('save-note', async (event, content) => {
   try {
     const encrypted = await safeStorage.encryptString(content)
     await fs.writeFile('user-notes.enc', encrypted)
+    
+    // After saving, notify the renderer about the update
+    mainWindow.webContents.send('note-updated', 'Note saved successfully!')
     return { success: true }
   } catch (error) {
     return { error: error.message }
@@ -205,6 +226,12 @@ document.getElementById('save-button').addEventListener('click', async () => {
   } else {
     alert('Saved successfully!')
   }
+})
+
+// Listen for updates from the main process
+window.electronAPI.onNoteUpdated((message) => {
+  document.getElementById('status-container').innerText = message
+  // You could also refresh the note content here
 })
 ```
 
@@ -343,7 +370,7 @@ See the `examples` directory for complete examples:
 
 ### Contributing
 
-I just started playing around with HTMX and Datastar, and am by no means a Electron export, so feel free to submit updates or more examples to show off the power!
+I just started playing around with HTMX and Datastar, so feel free to submit updates or more examples to show off the power!
 
 ## License
 
