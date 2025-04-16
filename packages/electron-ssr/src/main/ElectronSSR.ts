@@ -30,6 +30,12 @@ export class ElectronSSR {
     // Automatically register schemes when instance is created
     this.registerSchemes();
 
+    // Register cleanup handler
+    app.on('will-quit', () => {
+      this.log('Auto cleanup triggered by app will-quit event');
+      this.cleanup();
+    });
+
     // Automatically register handlers when app is ready
     if (app.isReady()) {
       this.registerHandlers();

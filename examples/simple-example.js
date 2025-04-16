@@ -290,12 +290,6 @@ function renderSystemInfo(info) {
   `;
 }
 
-// Clean up SSE connections when app is about to quit
-app.on('will-quit', () => {
-  console.log('Cleaning up resources before quitting...');
-  ssr.cleanup();
-});
-
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();
 });

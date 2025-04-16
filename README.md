@@ -104,11 +104,6 @@ app.whenReady().then(() => {
 
   createWindow();
 });
-
-// Clean up resources when app is about to quit
-app.on('will-quit', () => {
-  ssr.cleanup();
-});
 ```
 
 ### The struggle with Electron IPC
