@@ -153,6 +153,8 @@ With traditional Electron development, if you want to use Node.js modules in you
 
 This requires careful coordination between multiple files and introduces complexity:
 
+### 🙅‍♀️ Not fun way:
+
 ```javascript
 // preload.js
 const { contextBridge, ipcRenderer } = require('electron')
@@ -212,7 +214,7 @@ With Electron SSR, you can simply define a route handler that:
 2. Returns HTML with the results already integrated
 3. The renderer just makes a request and gets the rendered result
 
-Here's an example with HTMX:
+### 😊 Fun way with Electron SSR:
 
 ```javascript
 // In your main process setup
