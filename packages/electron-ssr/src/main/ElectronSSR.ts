@@ -1,9 +1,8 @@
-import { Protocol, protocol as electronProtocol } from 'electron';
+import { Protocol, protocol as electronProtocol, app } from 'electron';
 import { PassThrough, Readable } from 'stream';
 import {
   ElectronSSROptions,
   RouteHandler,
-  ActionHandler,
   SSEConnection
 } from './types';
 
@@ -27,6 +26,18 @@ export class ElectronSSR {
       sseScheme: 'sse',
       ...options
     };
+
+    // Automatically register schemes when instance is created
+    this.registerSchemes();
+
+    // Automatically register handlers when app is ready
+    if (app.isReady()) {
+      this.registerHandlers();
+    } else {
+      app.whenReady().then(() => {
+        this.registerHandlers();
+      });
+    }
   }
 
   /**
@@ -114,22 +125,6 @@ export class ElectronSSR {
     this.initialized = true;
     this.log('Protocol handlers registered');
 
-    return this;
-  }
-
-  /**
-   * Initialize protocol handlers (legacy method for backwards compatibility)
-   * @deprecated Use registerSchemes before app is ready and registerHandlers after app is ready
-   */
-  public initialize(customProtocol?: Protocol): ElectronSSR {
-    this.log('WARNING: initialize is deprecated. Use registerSchemes before app is ready and registerHandlers after app is ready.');
-
-    // Try to register handlers, which will fail if app is not ready
-    if (!this.schemesRegistered) {
-      this.registerSchemes(customProtocol);
-    }
-
-    this.registerHandlers(customProtocol);
     return this;
   }
 

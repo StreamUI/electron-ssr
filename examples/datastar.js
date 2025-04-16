@@ -2,7 +2,7 @@ import { app, BrowserWindow, protocol } from 'electron';
 import { createSSR } from 'ssr-electron';
 import { PassThrough, Readable } from 'stream';
 
-// Create the SSR bridge instance
+// Create the SSR bridge instance - it automatically registers schemes and handlers
 const ssr = createSSR({ debug: true });
 
 // App state
@@ -53,14 +53,8 @@ function createWindow() {
   mainWindow.webContents.openDevTools({ mode: 'detach' });
 }
 
-// Register schemes BEFORE app is ready
-ssr.registerSchemes();
-
 // Initialize when app is ready
 app.whenReady().then(() => {
-  // Register handlers AFTER app is ready
-  ssr.registerHandlers();
-
   // Register route for the main page
   ssr.registerRoute('/', (request, url) => {
     const html = renderBasicPage();

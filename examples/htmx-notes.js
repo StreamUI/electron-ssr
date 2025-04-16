@@ -3,14 +3,11 @@ import { createSSR } from 'ssr-electron';
 import fs from 'fs/promises';
 import path from 'path';
 
-// Create the SSR bridge instance
+// Create the SSR bridge instance - it automatically registers schemes and handlers
 const ssr = createSSR({ debug: true });
 
 // The path to our encrypted notes file
 const NOTES_FILE = path.join(app.getPath('userData'), 'notes.enc');
-
-// Register protocol schemes BEFORE app is ready
-ssr.registerSchemes();
 
 function createWindow() {
   // Create the browser window
@@ -33,9 +30,6 @@ function createWindow() {
 }
 
 app.whenReady().then(async () => {
-  // Register protocol handlers AFTER app is ready
-  ssr.registerHandlers();
-
   // Register route for the main page
   ssr.registerRoute('/', (request, url) => {
     return new Response(renderMainPage(), {

@@ -3,7 +3,7 @@ import { createSSR } from 'ssr-electron';
 import path from 'path';
 import { performance } from 'perf_hooks';
 
-// Create the SSR bridge instance
+// Create the SSR bridge instance - it automatically registers schemes and handlers
 const ssr = createSSR({ debug: true });
 
 // App state for tracking metrics
@@ -22,9 +22,6 @@ const appState = {
 // Performance monitoring variables
 let totalRenderTime = 0;
 let lastFrameTime = performance.now();
-
-// Register protocol schemes BEFORE app is ready
-ssr.registerSchemes();
 
 function createWindow() {
   // Create the browser window
@@ -286,9 +283,6 @@ function renderFullPage() {
 }
 
 app.whenReady().then(() => {
-  // Register protocol handlers AFTER app is ready
-  ssr.registerHandlers();
-
   // Register route for the main page
   ssr.registerRoute('/', (request, url) => {
     return new Response(renderFullPage(), {
