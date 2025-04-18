@@ -1,4 +1,4 @@
-# Electron SSR
+# SSR in Electron using htmx and Datastar – no more IPC
 
 ## Avoid the electron IPC using SSR instead (with HTMX, AlpineJS or Datastar)
 
