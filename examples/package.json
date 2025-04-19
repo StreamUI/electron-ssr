@@ -9,7 +9,8 @@
     "start:datastar": "electron datastar.js",
     "start:notes": "electron htmx-notes.js",
     "start:alpine": "electron simple-alpine.js",
-    "start:realtime": "electron realtime.js"
+    "start:realtime": "electron realtime.js",
+    "start:alpine-counter": "electron alpine-counter.js"
   },
   "dependencies": {
     "ssr-electron": "*"

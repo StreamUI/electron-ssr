@@ -1,6 +1,6 @@
 # SSR in Electron using htmx and Datastar – no more IPC
 
-## Avoid the electron IPC using SSR instead (with HTMX, AlpineJS or Datastar)
+## Avoid the electron IPC using SSR instead (with htmx, AlpineJS or Datastar)
 
 
 ## Get started right away
